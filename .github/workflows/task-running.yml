@@ -25,4 +25,4 @@ jobs:
         env:
           TEST_MESSAGE: ${{secrets.TEST_MESSAGE}}
         run: |
-          echo ${{env.TEST_MESSAGE}};
+          echo $TEST_MESSAGE;
