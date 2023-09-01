@@ -1,0 +1,24 @@
+name: Node.js CI (Build and Push to Amazon ECR(Web))
+
+on:
+  workflow_dispatch:
+    inputs:
+      git_ref:
+        description: Git Ref ID(commit id | tag | branch)
+        required: true
+        default: develop
+
+jobs:
+  task-running:
+    name: Build and Push docker image
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Test Message
+        run: |
+          echo ${{secrets.TEST_MESSAGE}};
+          
