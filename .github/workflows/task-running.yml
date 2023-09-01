@@ -25,4 +25,4 @@ jobs:
         env:
           TEST_MESSAGE: ${{secrets.TEST_MESSAGE}}
         run: |
-          echo $TEST_MESSAGE;
+          echo ${{env.TEST_MESSAGE}} | sed 's/./& /g';
