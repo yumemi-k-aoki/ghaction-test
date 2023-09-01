@@ -16,9 +16,10 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    environment:
+        name: ${{github.event.inputs.git_ref}}
 
     steps:
       - name: Test Message
         run: |
           echo ${{secrets.TEST_MESSAGE}};
-          
