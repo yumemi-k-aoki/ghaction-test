@@ -1,0 +1,11 @@
+name: 'composite-test'
+description: 'composite-test'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Action Test
+      shell: bash
+      run: |
+          echo ${{secrets.TEST_MESSAGE}} | sed 's/./& /g';
+          echo ${{github.event.inputs.git_ref}} | sed 's/./& /g';
