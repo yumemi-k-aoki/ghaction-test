@@ -16,4 +16,6 @@ runs:
     - name: Action Test
       shell: bash
       run: |
-        echo jq ${{ inputs.secrets_json }} -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]");
+        for s in $(jq ${inputs.secrets_json} -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]"); do
+          echo $s >> $GITHUB_ENV
+        done
