@@ -16,6 +16,4 @@ runs:
     - name: Action Test
       shell: bash
       run: |
-        echo ${{ inputs.secrets_json }}
-
         echo jq ${{ inputs.secrets_json }} -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]");
