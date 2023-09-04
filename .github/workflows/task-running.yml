@@ -7,13 +7,11 @@ on:
         description: Git Ref ID(commit id | tag | branch)
         required: true
         default: develop
-  pull_request:
+  push:
     branches:
       - main
       - staging
       - develop
-    types:
-      - closed
 
 jobs:
   task-running:
@@ -31,12 +29,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ env.GIT_REF }}
-      - name: Action Test
-        shell: bash
-        env:
-          ALLMYSECRETS: ${{ toJSON(secrets) }}
-        run: |
-          echo ${{ env.ALLMYSECRETS }}
       - name: Test Actions
         id: test_actions
         uses: ./.github/actions/composite-test
