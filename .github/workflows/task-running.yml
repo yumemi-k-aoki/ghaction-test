@@ -10,7 +10,7 @@ on:
 
 jobs:
   task-running:
-    name: Build and Push docker image
+    name: Test Actions
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -20,5 +20,6 @@ jobs:
         name: ${{github.event.inputs.git_ref}}
 
     steps:
-      - name: Build and Push docker image
+      - name: Test Actions
+        id: test_actions
         uses: ./.github/actions/composite-test
