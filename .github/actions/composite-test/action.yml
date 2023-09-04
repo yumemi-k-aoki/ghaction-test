@@ -6,6 +6,11 @@ runs:
   steps:
     - name: Action Test
       shell: bash
+      env:
+        ALLMYSECRETS: ${{ toJSON(secrets) }}
+        ALLMYVARS: ${{ toJSON(vars) }}
       run: |
-          echo ${{secrets.TEST_MESSAGE}} | sed 's/./& /g';
-          echo ${{github.event.inputs.git_ref}} | sed 's/./& /g';
+        echo ${{ ALLMYSECRETS }}
+        echo ${{ ALLMYVARS }}
+
+        echo jq ALLMYSECRETS -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]");
