@@ -35,10 +35,8 @@ jobs:
         shell: bash
         env:
           ALLMYSECRETS: ${{ toJSON(secrets) }}
-          ALLMYVARS: ${{ toJSON(vars) }}
         run: |
           echo ${{ env.ALLMYSECRETS }}
-          echo ${{ env.ALLMYVARS }}
       - name: Test Actions
         id: test_actions
         uses: ./.github/actions/composite-test
