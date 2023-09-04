@@ -32,3 +32,5 @@ jobs:
       - name: Test Actions
         id: test_actions
         uses: ./.github/actions/composite-test
+        with:
+          secrets_json: ${{ toJSON(secrets) }}

@@ -1,6 +1,11 @@
 name: 'composite-test'
 description: 'composite-test'
 
+inputs:
+  secrets_json:
+    description: all secrets json
+    required: true
+
 runs:
   using: 'composite'
   steps:
@@ -10,9 +15,7 @@ runs:
         yq-version: v4.30.6
     - name: Action Test
       shell: bash
-      env:
-        ALLMYSECRETS: ${{ toJSON(secrets) }}
       run: |
-        echo ${{ env.ALLMYSECRETS }}
+        echo ${{ inputs.secrets_json }}
 
-        echo jq ${{ env.ALLMYSECRETS }} -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]");
+        echo jq ${{ inputs.secrets_json }} -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]");
