@@ -4,6 +4,10 @@ description: 'composite-test'
 runs:
   using: 'composite'
   steps:
+    - name: Setup yq
+      uses: chrisdickinson/setup-yq@latest
+      with:
+        yq-version: v4.30.6
     - name: Action Test
       shell: bash
       env:
