@@ -12,9 +12,7 @@ runs:
       shell: bash
       env:
         ALLMYSECRETS: ${{ toJSON(secrets) }}
-        ALLMYVARS: ${{ toJSON(vars) }}
       run: |
-        echo ${{ ALLMYSECRETS }}
-        echo ${{ ALLMYVARS }}
+        echo ${{ env.ALLMYSECRETS }}
 
-        echo jq ALLMYSECRETS -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]");
+        echo jq ${{ env.ALLMYSECRETS }} -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]");
