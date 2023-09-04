@@ -20,6 +20,10 @@ jobs:
         name: ${{github.event.inputs.git_ref}}
 
     steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ env.GIT_REF }}
       - name: Test Actions
         id: test_actions
         uses: ./.github/actions/composite-test
