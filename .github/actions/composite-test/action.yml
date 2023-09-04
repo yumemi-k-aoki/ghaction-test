@@ -17,5 +17,6 @@ runs:
       shell: bash
       run: |
         for s in $(jq ${inputs.secrets_json} -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]"); do
-          echo $s
+          echo $s >> $GITHUB_ENV
         done
+        echo $GITHUB_ENV
